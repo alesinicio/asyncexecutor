@@ -1,5 +1,5 @@
 <?php
-use Alesinicio\AsyncExecutor\AsyncExecutor;
+use alesinicio\AsyncExecutor\AsyncExecutor;
 
 require __DIR__.'/../vendor/autoload.php';
 
