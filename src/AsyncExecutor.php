@@ -15,7 +15,7 @@ class AsyncExecutor {
 	 * @return int PID of process
 	 */
 	public function runProcess(string $scriptPath, array $params=[]) : int {
-		if (!file_exists($scriptPath)) throw new FileNotFoundException($scriptPath);
+		if ($scriptPath && !file_exists($scriptPath)) throw new FileNotFoundException($scriptPath);
 		
 		$command = [$this->interpreter, $scriptPath, ...explode(';', str_repeat('%s;', count($params)))];
 		$command = implode(' ', $command);
