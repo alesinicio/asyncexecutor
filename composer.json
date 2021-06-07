@@ -7,5 +7,8 @@
 	},
 	"require" : {
 		"psr/log" : "~1.1"
+	},
+	"require-dev" : {
+		"phpstan/phpstan" : "~0.12"
 	}
 }

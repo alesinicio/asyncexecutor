@@ -13,7 +13,7 @@ class AsyncProcess {
 	 */
 	public string $name;
 	/**
-	 * @var array $params
+	 * @var array<string> $params
 	 * Parameters to be passed to the script.
 	 */
 	public array $params;
@@ -23,6 +23,11 @@ class AsyncProcess {
 	 */
 	public ?int $pid = null;
 	
+	/**
+	 * @param string $name
+	 * @param string $path
+	 * @param array<string> $params
+	 */
 	public function __construct(string $name, string $path, array $params=[]) {
 		$this->path = $path;
 		$this->name = $name;

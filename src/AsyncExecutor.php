@@ -11,7 +11,7 @@ class AsyncExecutor {
 	 * Run process as background service.
 	 * 
 	 * @param string $scriptPath
-	 * @param array $params
+	 * @param array<string> $params
 	 * @return int PID of process
 	 */
 	public function runProcess(string $scriptPath, array $params=[]) : int {

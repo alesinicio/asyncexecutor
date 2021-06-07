@@ -5,10 +5,16 @@ use Psr\Log\LoggerInterface;
 
 class AsyncMultiProcess {
 	protected bool $stopOnException = true;
-	protected array $processes = [];
 	protected AsyncExecutor $async;
 	protected ?LoggerInterface $logger;
 	protected int $processRestartTimeout = 5;
+	/**
+	 * @var array<AsyncProcess>
+	 */
+	protected array $processes = [];
+	/**
+	 * @var array<string>
+	 */
 	protected array $processRestartPends = [];
 	
 	public function __construct(AsyncExecutor $async, LoggerInterface $logger=null) {
@@ -21,7 +27,7 @@ class AsyncMultiProcess {
 	 * 
 	 * @param AsyncProcess $process
 	 */
-	public function addProcess(AsyncProcess $process) {
+	public function addProcess(AsyncProcess $process) : void {
 		$this->processes[$process->name] = $process;
 	}
 	/**
