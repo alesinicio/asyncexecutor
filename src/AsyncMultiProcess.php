@@ -1,6 +1,7 @@
 <?php
 namespace alesinicio\AsyncExecutor;
 
+use Exception;
 use Psr\Log\LoggerInterface;
 
 class AsyncMultiProcess {
@@ -52,6 +53,7 @@ class AsyncMultiProcess {
 	}
 	/**
 	 * Executes the processes that were added and keep them running forever.
+	 * @throws Exception
 	 */
 	public function keepRunningProcesses() : void {
 		while(true) {
@@ -61,15 +63,15 @@ class AsyncMultiProcess {
 				$waitUntil = $this->processRestartPends[$process->name] ?? null;
 				if ($waitUntil && (date('U') > $waitUntil)) continue;
 				unset($this->processRestartPends[$process->name]);
-				
-				if ($this->logger) $this->logger->debug('Starting process '.$process->name);
+
+				$this->logger?->debug('Starting process ' . $process->name);
 				try {
 					$process->pid = $this->async->runProcess($process->path, $process->params);
 				} catch (FileNotFoundException $e) {
 					if ($this->stopOnException) throw new FileNotFoundException($e->getMessage());
 					
 					$timeout = strtotime('+'.$this->processRestartTimeout.' seconds');
-					if (!$timeout) throw new \Exception('Unexpected return');
+					if (!$timeout) throw new Exception('Unexpected return');
 					
 					$this->processRestartPends[$process->name] = date('U', $timeout);
 				}

@@ -6,7 +6,8 @@
 		}
 	},
 	"require" : {
-		"psr/log" : "~1.1"
+		"psr/log" : "~1.1",
+		"ext-posix": "*"
 	},
 	"require-dev" : {
 		"phpstan/phpstan" : "~0.12"
