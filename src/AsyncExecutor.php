@@ -20,9 +20,9 @@ class AsyncExecutor {
 		if ($scriptPath && !file_exists($scriptPath)) throw new FileNotFoundException($scriptPath);
 
 		$outputPath ??= $this->defaultOutputPath;
-		array_unshift($params, $outputPath);
 		$command = [$this->interpreterPath, $scriptPath, ...explode(';', str_repeat('%s;', count($params)))];
 		$command = implode(' ', $command);
+		$params[] = $outputPath;
 		$command = sprintf($command . ' > %s 2>&1 & echo $!;', ...$params);
 		return intval(exec($command));
 	}
