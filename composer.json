@@ -6,7 +6,7 @@
 		}
 	},
 	"require" : {
-		"psr/log" : "~1.1",
+		"psr/log" : "^1 || ^2 || ^3",
 		"ext-posix": "*"
 	},
 	"require-dev" : {
