@@ -6,7 +6,7 @@ use alesinicio\AsyncExecutor\AsyncProcess;
 require __DIR__.'/../vendor/autoload.php';
 
 //INITIALIZE THE EXECUTOR
-$async = new AsyncExecutor('/usr/bin/php');
+$async = new AsyncExecutor();
 
 //INITIALIZE THE MULTI-INSTANCE WRAPPER
 $multiAsync	= new AsyncMultiProcess($async);

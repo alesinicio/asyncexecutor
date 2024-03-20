@@ -2,16 +2,18 @@
 namespace alesinicio\AsyncExecutor;
 
 class AsyncExecutor {
+	/**
+	 * @throws FileNotFoundException
+	 */
 	public function __construct(
-		private readonly string $interpreterPath = 'php',
+		private readonly string $interpreterPath = PHP_BINARY,
 		private readonly string $defaultOutputPath = '/dev/null',
-	) {}
+	) {
+		if (!file_exists($this->interpreterPath)) throw new FileNotFoundException('Interpreter not found');
+	}
 	/**
 	 * Run process as background service.
 	 *
-	 * @param string      $scriptPath
-	 * @param array       $params
-	 * @param string|null $outputPath
 	 * @return int PID of process
 	 * @throws FileNotFoundException
 	 */

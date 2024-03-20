@@ -4,7 +4,7 @@ use alesinicio\AsyncExecutor\AsyncExecutor;
 require __DIR__.'/../vendor/autoload.php';
 
 //INITIALIZE THE EXECUTOR
-$async = new AsyncExecutor('/usr/bin/php');
+$async = new AsyncExecutor();
 
 //RUN THE PROCESS
 $pid = $async->runProcess(__DIR__.'/bg_process.php', ['param01', 'param02']);
