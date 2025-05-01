@@ -3,4 +3,4 @@ namespace Alesinicio\AsyncExecutor;
 
 use Exception;
 
-class FileNotFoundException extends Exception {}
+class FileNotFoundException extends Exception { }

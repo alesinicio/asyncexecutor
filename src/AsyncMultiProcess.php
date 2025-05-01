@@ -63,12 +63,6 @@ class AsyncMultiProcess {
 			usleep(10_000);
 		}
 	}
-	private function isProcessUnderRestartTimeout(AsyncProcess $process) : bool {
-		$waitUntil = $this->processRestartPends[$process->name] ?? null;
-		if (!$waitUntil) return false;
-
-		return date('U') > $waitUntil;
-	}
 	/**
 	 * @param AsyncProcess $process
 	 * @return void
@@ -88,5 +82,11 @@ class AsyncMultiProcess {
 
 			$this->processRestartPends[$process->name] = $timeout;
 		}
+	}
+	private function isProcessUnderRestartTimeout(AsyncProcess $process) : bool {
+		$waitUntil = $this->processRestartPends[$process->name] ?? null;
+		if (!$waitUntil) return false;
+
+		return date('U') > $waitUntil;
 	}
 }
