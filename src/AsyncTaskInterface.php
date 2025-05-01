@@ -1,6 +1,6 @@
 <?php
 
-namespace alesinicio\AsyncExecutor;
+namespace Alesinicio\AsyncExecutor;
 
 interface AsyncTaskInterface {
 	public function handle(AsyncTaskDTO $dto) : void;

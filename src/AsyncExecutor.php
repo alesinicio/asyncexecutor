@@ -1,5 +1,5 @@
 <?php
-namespace alesinicio\AsyncExecutor;
+namespace Alesinicio\AsyncExecutor;
 
 readonly class AsyncExecutor {
 	public function __construct(

@@ -1,6 +1,6 @@
 <?php
 
-namespace alesinicio\AsyncExecutor;
+namespace Alesinicio\AsyncExecutor;
 
 readonly class AsyncTaskDTO {
 	public function __construct(

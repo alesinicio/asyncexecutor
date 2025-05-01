@@ -1,5 +1,5 @@
 <?php
-namespace alesinicio\AsyncExecutor;
+namespace Alesinicio\AsyncExecutor;
 
 use Exception;
 use Psr\Log\LoggerInterface;

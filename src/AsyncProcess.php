@@ -1,5 +1,5 @@
 <?php
-namespace alesinicio\AsyncExecutor;
+namespace Alesinicio\AsyncExecutor;
 
 class AsyncProcess {
 	/**
