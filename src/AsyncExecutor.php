@@ -1,25 +1,24 @@
 <?php
 namespace alesinicio\AsyncExecutor;
 
-class AsyncExecutor {
-	/**
-	 * @throws FileNotFoundException
-	 */
+readonly class AsyncExecutor {
 	public function __construct(
-		private readonly string $interpreterPath = PHP_BINARY,
-		private readonly string $defaultOutputPath = '/dev/null',
-	) {
-		if (!file_exists($this->interpreterPath)) throw new FileNotFoundException('Interpreter not found');
-	}
+		private string $interpreterPath = 'php',
+		private string $defaultOutputPath = '/dev/null',
+	) {}
+
 	/**
 	 * Run process as background service.
 	 *
+	 * @param string      $scriptPath
+	 * @param array       $params
+	 * @param string|null $outputPath
 	 * @return int PID of process
-	 * @throws FileNotFoundException
 	 */
-	public function runProcess(string $scriptPath, array $params = [], ?string $outputPath = null) : int {
-		if ($scriptPath && !file_exists($scriptPath)) throw new FileNotFoundException($scriptPath);
-
+	public
+	function runProcess(
+		string $scriptPath, array $params = [], ?string $outputPath = null,
+	) : int {
 		$command    = [$this->interpreterPath, $scriptPath, ...explode(';', str_repeat('%s;', count($params)))];
 		$command    = implode(' ', $command);
 		$outputPath ??= $this->defaultOutputPath;
@@ -33,7 +32,10 @@ class AsyncExecutor {
 	 * @param int $pid
 	 * @return bool
 	 */
-	public function isProcessRunning(int $pid) : bool {
+	public
+	function isProcessRunning(
+		int $pid,
+	) : bool {
 		return (false !== posix_getpgid($pid));
 	}
 }
